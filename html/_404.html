@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><script node>`${getAsset("title")} | 404`</script node></title>
+		<script node>getAsset("logo")</script node>
+		<script node>getAsset("meta")</script node>
+		<script node>getAsset("fonts")</script node>
+		<script node>getAsset("css-variables")</script node>
+		<style>
+			html, body {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				margin: 0;
+				font-size: 0;
+				background: var(--dark-gray);
+			}
+			#container {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				text-align: center;
+			}
+			#container h1 {
+				font-size: calc(6 * var(--font-size));
+				font-family: var(--font-0);
+				color: var(--medium-orange);
+				margin: var(--gap-size);
+				user-select: none;
+				line-height: var(--line-height);
+			}
+			#container h2 {
+				font-size: calc(2 * var(--font-size));
+				font-family: var(--font-1);
+				color: var(--light-gray);
+				margin: var(--gap-size);
+				user-select: none;
+				line-height: var(--line-height);
+			}
+			#container a {
+				display: inline-block;
+				line-height: var(--line-height);
+				font-size: var(--font-size);
+				font-family: var(--font-1);
+				color: var(--light-gray);
+				transition: var(--transition-time);
+				cursor: pointer;
+				user-select: none;
+				text-decoration: none;
+				margin: calc(3 * var(--gap-size));
+				border-radius: var(--border-radius);
+				padding: var(--gap-size);
+				height: calc(var(--font-size) + 2 * var(--gap-size));
+				width: calc(10 * var(--font-size));
+				box-sizing: border-box;
+				background-color: var(--medium-blue);
+			}
+			#container a:hover, #container a:focus {
+				color: var(--dark-gray);
+				background-color: var(--medium-orange);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<h1>404</h1>
+			<h2>Nothing here.</h2>
+			<a href="/">Go back</a>
+		</div>
+	</body>
+</html>

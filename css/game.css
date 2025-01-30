@@ -1,0 +1,478 @@
+/*** elements ***/
+	html, body {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		background: var(--dark-gray);
+		font-size: 0;
+		font-family: var(--font-1);
+		line-height: var(--line-height);
+		overflow: hidden;
+	}
+
+	section {
+		display: inline-block;
+		height: 100%;
+		width: auto;
+		box-sizing: border-box;
+	}
+
+	svg {
+		fill: currentColor;
+		height: 100%;
+		width: auto;
+		color: var(--light-gray);
+	}
+
+	h1 {
+		font-size: calc(2 * var(--font-size));
+		font-family: var(--font-0);
+		color: var(--medium-red);
+		margin: calc(var(--gap-size) * 8) 0 0 0;
+		text-align: center;
+		user-select: none;
+	}
+
+		h1 span {
+			user-select: all;
+		}
+
+	h2 {
+		font-size: calc(2 * var(--font-size));
+		font-family: var(--font-0);
+		color: var(--light-gray);
+		margin: calc(var(--gap-size) * 8) 0 calc(var(--gap-size) * 2) 0;
+		text-align: center;
+		user-select: none;
+		vertical-align: top;
+	}
+
+/*** sidebar ***/
+	#players {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: var(--sidebar-width);
+		box-sizing: border-box;
+		padding: calc(2 * var(--gap-size));
+		border-right: var(--gap-size) solid var(--medium-light-gray);
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
+
+	/* turn indicators */
+		#players svg {
+			height: calc(2 * var(--font-size));
+			vertical-align: top;
+		}
+
+			#players-ghost h2 svg:nth-child(3), #players-hunters h2 svg:nth-child(3) {
+				margin-right: calc(var(--gap-size) * -2);
+			}
+
+				#players-ghost h2 svg:nth-child(3) path {
+					d: path(var(--svg-ghost));
+				}
+
+				#players-hunters h2 svg:nth-child(3) path {
+					d: path(var(--svg-hunter));
+				}			
+
+				#players-ghost h2 svg:nth-child(1) path, #players-hunters h2 svg:nth-child(1) path {
+					d: path(var(--svg-chevron-right));
+				}
+
+				#players-ghost h2 svg:nth-child(4) path, #players-hunters h2 svg:nth-child(4) path {
+					d: path(var(--svg-chevron-left));
+				}
+
+			#players[turn="0"] #players-ghost h2, #players[turn="0"] #players-ghost svg {
+				color: var(--light-blue);
+			}
+
+			#players[turn="1"] #players-ghost h2 svg:nth-child(1), #players[turn="1"] #players-ghost h2 svg:nth-child(4) {
+				display: none;
+			}
+
+			#players[turn="1"] #players-hunters h2, #players[turn="1"] #players-hunters svg {
+				color: var(--light-blue);
+			}
+
+			#players[turn="0"] #players-hunters h2 svg:nth-child(1), #players[turn="0"] #players-hunters h2 svg:nth-child(4) {
+				display: none;
+			}
+
+	/* tallies */
+		#players-hunters-tally {
+			width: 100%;
+			height: calc(2 * var(--font-size));
+			margin-top: calc(var(--gap-size) * -2);
+			margin-bottom: calc(var(--gap-size) * 2);
+			text-align: center;
+		}
+
+			#players-hunters-tally svg path {
+				d: path(var(--svg-tombstone)) !important;
+			}
+
+			#player-hunters:not([tally]) #player-hunters-tally {
+				display: none;
+			}
+
+			#players-hunters[tally="3"] #players-hunters-tally svg:nth-child(4) {
+				display: none;
+			}
+
+			#players-hunters[tally="2"] #players-hunters-tally svg:nth-child(4), #players-hunters[tally="2"] #players-hunters-tally svg:nth-child(3) {
+				display: none;
+			}
+
+			#players-hunters[tally="1"] #players-hunters-tally svg:nth-child(4), #players-hunters[tally="1"] #players-hunters-tally svg:nth-child(3), #players-hunters[tally="1"] #players-hunters-tally svg:nth-child(2) {
+				display: none;
+			}
+
+			#players-hunters[tally="0"] #players-hunters-tally svg:nth-child(4), #players-hunters[tally="0"] #players-hunters-tally svg:nth-child(3), #players-hunters[tally="0"] #players-hunters-tally svg:nth-child(2), #players-hunters[tally="0"] #players-hunters-tally svg:nth-child(1) {
+				display: none;
+			}
+
+	/* actions */
+		#players-action {
+			width: 100%;
+			text-align: center;
+		}
+
+			#players-action-pass, #players-action-add {
+				background: var(--medium-dark-gray);
+				border-radius: var(--border-radius);
+				font-size: calc(2 * var(--font-size));
+				font-weight: bold;
+				color: var(--light-gray);
+				font-family: var(--font-1);
+				text-align: center;
+				padding: var(--gap-size) calc(var(--gap-size) * 2);
+				border: none;
+				cursor: pointer;
+				user-select: none;
+				height: calc(var(--font-size) * 2 + var(--gap-size) * 2);
+				width: 100%;
+				line-height: var(--line-height);
+				box-sizing: border-box;
+				transition: var(--transition-time);
+				outline: none;
+				text-transform: uppercase;
+				vertical-align: top;
+			}
+
+				#players-action-pass:focus, #players-action-pass:hover, #players-action-add:focus, #players-action-add:hover {
+					background: var(--light-blue);	
+				}
+
+				#players-action-pass:not([visibility="true"]), #players-action-add:not([visibility="true"]) {
+					display: none;
+					pointer-events: none;
+				}
+
+				#players:not([turn="0"]) #players-action-pass {
+					background: var(--dark-gray);
+					color: var(--medium-dark-gray);
+					pointer-events: none;
+				}
+
+				#players:not([turn="1"]) #players-action-add {
+					background: var(--dark-gray);
+					color: var(--medium-dark-gray);
+					pointer-events: none;
+				}
+
+				#players-action-add[count="0"] {
+					background: var(--light-blue);
+				}
+
+				#players-action-add[count="4"] {
+					background: var(--dark-gray);
+					color: var(--medium-dark-gray);
+					pointer-events: none;
+				}
+
+	/* resign */
+		#players-resign {
+			background: var(--medium-dark-gray);
+			border-radius: var(--border-radius);
+			font-size: calc(2 * var(--font-size));
+			font-weight: bold;
+			color: var(--medium-red);
+			font-family: var(--font-1);
+			text-align: center;
+			padding: var(--gap-size) calc(var(--gap-size) * 2);
+			border: none;
+			cursor: pointer;
+			user-select: none;
+			height: calc(var(--font-size) * 2 + var(--gap-size) * 2);
+			width: 100%;
+			line-height: var(--line-height);
+			box-sizing: border-box;
+			transition: var(--transition-time);
+			outline: none;
+			text-transform: uppercase;
+			vertical-align: top;
+			margin-top: calc(10 * var(--gap-size));
+		}
+
+		#players-resign:not([visibility="true"]) {
+			display: none;
+			pointer-events: none;
+		}
+		
+/*** board ***/
+	#board {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: calc(100% - var(--sidebar-width));
+	}
+
+		#board-inner {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			height: calc(100vh - 8 * var(--gap-size));
+			width:  calc(100vh - 8 * var(--gap-size));
+			max-height: calc((100vw - var(--sidebar-width)) - 8 * var(--gap-size));
+			max-width:  calc((100vw - var(--sidebar-width)) - 8 * var(--gap-size));
+			box-sizing: border-box;
+			border-radius: var(--border-radius);
+			filter: drop-shadow(0 0 var(--shadow-size) var(--medium-red));
+			overflow: hidden;
+			background: var(--medium-dark-gray);
+		}
+
+			#board-grid, #board-pieces {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				box-shadow: 0 0 var(--shadow-size) var(--dark-gray) inset;
+			}
+
+			#board-grid {
+				pointer-events: none;
+			}
+
+				.board-grid-row, .board-pieces-row {
+					display: block;
+					width: 100%;
+					height: calc(100% / var(--board-rows));
+					vertical-align: top;
+				}
+
+					.board-grid-square, .board-pieces-square {
+						display: inline-block;
+						height: 100%;
+						width: calc(100% / var(--board-columns));
+						vertical-align: top;
+						transition: var(--transition-time);
+					}
+
+					.board-grid-row:nth-child(odd) .board-grid-square:nth-child(odd) {
+						background: var(--medium-light-gray);
+					}
+
+					.board-grid-row:nth-child(odd) .board-grid-square:nth-child(even) {
+						background: var(--medium-dark-gray);
+					}
+
+					.board-grid-row:nth-child(even) .board-grid-square:nth-child(odd) {
+						background: var(--medium-dark-gray);
+					}
+
+					.board-grid-row:nth-child(even) .board-grid-square:nth-child(even) {
+						background: var(--medium-light-gray);
+					}
+
+					.board-grid-square[obstacle="true"] {
+						background: var(--dark-gray) !important;
+						box-shadow: 0 0 var(--shadow-size) var(--medium-red) inset;
+					}
+
+					.board-pieces-square[highlighted="true"] {
+						box-shadow: 0 0 calc(var(--shadow-size) * 2) var(--light-blue) inset;
+						cursor: pointer;
+					}
+
+						.board-pieces-square[highlighted="true"]:hover {
+							background: var(--light-blue);
+						}
+
+				.board-pieces-piece {
+					position: relative;
+					top: 50%;
+					left: 50%;
+					transform: translateX(-50%) translateY(-50%);
+					width: var(--piece-ratio);
+					height: var(--piece-ratio);
+					display: inline-block;
+					vertical-align: top;
+					font-size: 0;
+					border: none;
+					cursor: pointer;
+					background: transparent;
+					padding: 0;
+					margin: 0;
+					outline: none;
+				}
+
+					.board-pieces-piece svg {
+						filter: drop-shadow(0 0 var(--shadow-size) var(--medium-blue));
+						color: var(--light-gray);
+						transition: var(--transition-time);
+					}
+
+						.board-pieces-piece[team="0"] svg path {
+							d: path(var(--svg-ghost));
+						}
+
+						.board-pieces-piece[team="1"] svg path {
+							d: path(var(--svg-hunter));
+						}
+
+						.board-pieces-piece[selected="true"] svg {
+							color: var(--light-blue);
+						}
+
+						.board-pieces-piece svg:hover {
+							color: var(--light-blue);
+						}
+/*** postgame ***/
+	#postgame {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		background: var(--dark-gray);
+		padding: calc(4 * var(--gap-size));
+		border-radius: var(--border-radius);
+		box-shadow: 0 0 var(--shadow-size) var(--medium-dark-gray);
+		width: 100%;
+		text-align: center;
+	}
+
+		#postgame:not([visibility="true"]) {
+			display: none;
+			pointer-events: none;
+		}
+
+		#postgame-message {
+			margin-top: 0;
+			margin-bottom: var(--font-size);
+		}
+
+		#postgame-rematch, #postgame-new {
+			background: var(--medium-dark-gray);
+			border-radius: var(--border-radius);
+			font-size: calc(2 * var(--font-size));
+			font-weight: bold;
+			color: var(--light-gray);
+			font-family: var(--font-1);
+			text-align: center;
+			padding: var(--gap-size) calc(var(--gap-size) * 2);
+			border: none;
+			cursor: pointer;
+			user-select: none;
+			height: calc(var(--font-size) * 2 + var(--gap-size) * 2);
+			width: calc(var(--font-size) * 8 + var(--gap-size) * 4);
+			line-height: var(--line-height);
+			box-sizing: border-box;
+			transition: var(--transition-time);
+			outline: none;
+			text-transform: uppercase;
+			vertical-align: top;
+		}
+
+			#postgame-rematch {
+				border-radius: var(--border-radius) 0 0 var(--border-radius);
+			}
+
+			#postgame-new {
+				border-radius: 0 var(--border-radius) var(--border-radius) 0;
+			}
+
+			#postgame-rematch:focus, #postgame-rematch:hover, #postgame-new:focus, #postgame-new:hover {
+				background: var(--light-blue);	
+			}
+
+/*** toast ***/
+	#toast {
+		position: fixed;
+		top: calc(2 * var(--gap-size));
+		left: 50%;
+		transform: translateX(-50%);
+		padding: calc(var(--gap-size) + var(--border-size));
+		border-radius: var(--border-radius);
+		font-family: var(--font-1);
+		font-size: calc(var(--font-size) * 2);
+		font-weight: bold;
+		line-height: var(--line-height);
+		width: calc(100% - 4 * var(--gap-size));
+		min-height: calc(var(--font-size) + 2 * var(--gap-size) + 2 * var(--border-size));
+		height: auto;
+		box-sizing: border-box;
+		z-index: 100;
+		cursor: default;
+		user-select: none;
+		box-shadow: 0 0 var(--shadow-size) var(--dark-gray);
+		color: var(--light-gray);
+		background: var(--dark-gray);
+		transition: var(--transition-time);
+		opacity: 1;
+		text-align: center;
+		pointer-events: none;
+	}
+
+		#toast[success="true"] {
+			color: var(--light-gray);
+			background: var(--medium-blue);
+		}
+
+		#toast[success="false"] {
+			color: var(--dark-gray);
+			background: var(--medium-red);
+		}
+
+		#toast:not([visibility="true"]) {
+			opacity: 0;
+		}
+
+/*** mobile ***/
+	@media screen and (max-width: 800px) and (orientation: portrait) {
+		#players {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: auto;
+			overflow: scroll;
+			margin-top: 100vw;
+			border: none;
+		}
+
+		#board {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 100vw;
+			height: 100vw;
+			max-width: 100vh;
+			max-height: 100vh;
+		}
+
+			#board-inner {
+				height: calc(100vw - 2 * var(--gap-size));
+				width: calc(100vw - 2 * var(--gap-size));
+				max-height: calc(100vh - 2 * var(--gap-size));
+				max-width: calc(100vh - 2 * var(--gap-size));
+			}
+	}

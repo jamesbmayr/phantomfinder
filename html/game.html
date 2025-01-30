@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><script node>`${getAsset("title")} | ${REQUEST.game.id.toUpperCase()}`</script node></title>
+		<script node>getAsset("logo")</script node>
+		<script node>getAsset("meta")</script node>
+		<script node>getAsset("fonts")</script node>
+		<script node>getAsset("css-variables")</script node>
+		<link rel="stylesheet" href="game.css"/>
+		<script src="game.js" defer></script>
+	</head>
+	<body>
+		<section id="players">
+			<h1>Phantom Finder<br><span><script node>REQUEST.game.id.toUpperCase()</script node></span></h1>
+			<div id="players-ghost">
+				<h2>
+					<svg viewBox="10 10 80 80"><path></path></svg>
+					<span>ghost</span>
+					<svg viewBox="10 5 80 80"><path></path></svg>
+					<svg viewBox="10 10 80 80"><path></path></svg>
+				</h2>
+			</div>
+			<div id="players-hunters">
+				<h2>
+					<svg viewBox="10 10 80 80"><path></path></svg>
+					<span>hunters</span>
+					<svg viewBox="10 10 80 80"><path></path></svg>
+					<svg viewBox="10 10 80 80"><path></path></svg>
+				</h2>
+				<div id="players-hunters-tally">
+					<svg viewBox="10 10 80 80"><path></path></svg>
+					<svg viewBox="10 10 80 80"><path></path></svg>
+					<svg viewBox="10 10 80 80"><path></path></svg>
+					<svg viewBox="10 10 80 80"><path></path></svg>
+				</div>
+			</div>
+			<div id="players-action">
+				<button id="players-action-pass" visibility="false">pass</button>
+				<button id="players-action-add" visibility="false">add hunter</button>
+			</div>
+			<button id="players-resign" visibility="false">resign</button>
+		</section>
+		<section id="board">
+			<div id="board-inner">
+				<div id="board-grid"></div>
+				<div id="board-pieces"></div>
+			</div>
+		</section>
+		<div id="postgame" visibility="false">
+			<h2 id="postgame-message"></h2>
+			<button id="postgame-rematch">rematch</button>
+			<button id="postgame-new">new game</button>
+		</div>
+	</body>
+</html>
