@@ -505,7 +505,7 @@
 							query.document.pieces = game.pieces
 
 						// game over
-							game.winner = CONSTANTS.teamGhost
+							game.winner = CONSTANTS.teamHunters
 							query.document.winner = game.winner
 
 							game.timeEnd = new Date().getTime()
