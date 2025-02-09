@@ -90,12 +90,12 @@
 								case (/\/apple\-touch\-icon\-precomposed[.]png$/).test(REQUEST.url):
 								case (/\/logo[.]png$/).test(REQUEST.url):
 									try {
-										RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 										FS.readFile("./assets/logo.png", (error, file) => {
 											if (error) {
 												_404(REQUEST, RESPONSE, error)
 												return
 											}
+											RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 											RESPONSE.end(file, "binary")
 										})
 									}
@@ -105,12 +105,12 @@
 							// css
 								case (REQUEST.fileType == "css"):
 									try {
-										RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 										FS.readFile("./css/" + REQUEST.path[REQUEST.path.length - 1], (error, file) => {
 											if (error) {
 												_404(REQUEST, RESPONSE, error)
 												return
 											}
+											RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 											RESPONSE.end(file, "binary")
 										})
 									}
@@ -120,12 +120,12 @@
 							// js
 								case (REQUEST.fileType == "js"):
 									try {
-										RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 										FS.readFile("./js/" + REQUEST.path[REQUEST.path.length - 1], (error, file) => {
 											if (error) {
 												_404(REQUEST, RESPONSE, error)
 												return
 											}
+											RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 											RESPONSE.end(file, "binary")
 										})
 									}
@@ -135,12 +135,12 @@
 							// asset
 								case (/[.]([a-zA-Z0-9])+$/).test(REQUEST.url):
 									try {
-										RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 										FS.readFile("./assets/" + REQUEST.path[REQUEST.path.length - 1], (error, file) => {
 											if (error) {
 												_404(REQUEST, RESPONSE, error)
 												return
 											}
+											RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 											RESPONSE.end(file, "binary")
 										})
 									}
@@ -150,8 +150,8 @@
 							// home
 								case (/^\/?$/).test(REQUEST.url):
 									try {
-										RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 										CORE.renderHTML(REQUEST, "./html/home.html", html => {
+											RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 											RESPONSE.end(html)
 										})
 									}
@@ -172,8 +172,8 @@
 												}
 
 												REQUEST.game = data.game
-												RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 												CORE.renderHTML(REQUEST, "./html/game.html", html => {
+													RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 													RESPONSE.end(html)
 												})
 											})
@@ -213,8 +213,8 @@
 								// createGame
 									case "createGame":
 										try {
-											RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 											GAME.createOne(REQUEST, data => {
+												RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 												RESPONSE.end(JSON.stringify(data))
 											})
 										}
@@ -224,8 +224,8 @@
 								// joinGame
 									case "joinGame":
 										try {
-											RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 											GAME.joinOne(REQUEST, data => {
+												RESPONSE.writeHead(200, CORE.constructHeaders(REQUEST))
 												RESPONSE.end(JSON.stringify(data))
 											})
 										}

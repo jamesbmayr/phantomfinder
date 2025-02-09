@@ -52,24 +52,29 @@
 					<ul>
 						<li>Create a game by selecting a side: ghost or ghost hunters.</li>
 						<li>Join a game with a game ID.</li>
-						<li>Every game is played on an 8x8 grid with random obstacles.</li>
+						<li>Every game is played on a grid (<script node>getAsset("constants").boardSize</script node>x<script node>getAsset("constants").boardSize</script node>) with <script node>getAsset("constants").obstacleCount</script node> random obstacles.</li>
 					</ul>
 				</div>
 				<div id="about-gameplay">
-					<h2>Gameplay</h2>
+					<h2>Ghost</h2>
 					<ul>
-						<li>The ghost can move like a Chess Knight: 2 spaces vertically or horizontally, then 1 space perpendicular.</li>
-						<li>The hunters can move like Chess Queens: any number of spaces vertically, horizontally, or diagonally.</li>
+						<li>The ghost moves like a Chess Knight: 2 spaces vertically or horizontally, then 1 space perpendicular.</li>
+						<li>The ghost can always see the hunters.</li>
+						<li>If the ghost moves where a hunter is, the hunter is captured, and the ghost moves again.</li>
+					</ul>
+					<h2>Hunters</h2>
+					<ul>
+						<li>The hunters move like Chess Queens: any number of spaces vertically, horizontally, or diagonally.</li>
 						<li>If a hunter has a direct line-of-sight to the ghost, the ghost will be revealed.</li>
-						<li>If the ghost moves onto a space with a hunter, the hunter disappears, and the ghost moves again.</li>
-						<li>The hunters player can choose between moving an existing hunter or adding a new one at the edge of the board.</li>
+						<li>The hunters player can move an existing hunter, or add a new one at the edge of the board.</li>
+						<li>There can be up to <script node>getAsset("constants").simultaneousHunters</script node> hunters at once.</li>
 					</ul>
 				</div>
 				<div id="about-endgame">
 					<h2>Endgame</h2>
 					<ul>
-						<li>If a hunter moves to the ghost's space, the hunters win.</li>
-						<li>If the ghost captures 4 hunters, the ghost wins.</li>
+						<li>If <script node>getAsset("constants").hunterDeathGoal</script node> hunters are captured, the ghost wins.</li>
+						<li>If the ghost is captured, the hunters win.</li>
 					</ul>
 				</div>
 			</div>

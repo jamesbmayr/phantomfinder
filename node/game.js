@@ -596,7 +596,7 @@
 							query.document.capture = game.capture
 
 						// message
-							message = `hunters captured: ${game.deaths}; ghost goes again`
+							message = `hunters captured: ${game.deaths} / ${CONSTANTS.hunterDeathGoal}; ghost goes again`
 
 						// game over?
 							if (game.deaths >= CONSTANTS.hunterDeathGoal) {
@@ -606,7 +606,7 @@
 								game.timeEnd = new Date().getTime()
 								query.document.timeEnd = game.timeEnd
 
-								message = `hunters captured: ${game.deaths}; ghost wins`
+								message = `hunters captured: ${game.deaths} / ${CONSTANTS.hunterDeathGoal}; ghost wins`
 							}
 					}
 
