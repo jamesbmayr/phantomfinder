@@ -72,22 +72,6 @@
 				margin-right: calc(var(--gap-size) * -2);
 			}
 
-				#players-ghost h2 svg:nth-child(3) path {
-					d: path(var(--svg-ghost));
-				}
-
-				#players-hunters h2 svg:nth-child(3) path {
-					d: path(var(--svg-hunter));
-				}			
-
-				#players-ghost h2 svg:nth-child(1) path, #players-hunters h2 svg:nth-child(1) path {
-					d: path(var(--svg-chevron-right));
-				}
-
-				#players-ghost h2 svg:nth-child(4) path, #players-hunters h2 svg:nth-child(4) path {
-					d: path(var(--svg-chevron-left));
-				}
-
 			#players[turn="0"] #players-ghost h2, #players[turn="0"] #players-ghost svg {
 				color: var(--light-blue);
 			}
@@ -112,10 +96,6 @@
 			margin-bottom: calc(var(--gap-size) * 2);
 			text-align: center;
 		}
-
-			#players-hunters-tally svg path {
-				d: path(var(--svg-tombstone)) !important;
-			}
 
 			#player-hunters:not([tally]) #player-hunters-tally {
 				display: none;
@@ -330,14 +310,6 @@
 						color: var(--light-gray);
 						transition: var(--transition-time);
 					}
-
-						.board-pieces-piece[team="0"] svg path {
-							d: path(var(--svg-ghost));
-						}
-
-						.board-pieces-piece[team="1"] svg path {
-							d: path(var(--svg-hunter));
-						}
 
 						.board-pieces-piece[selected="true"] svg {
 							color: var(--light-blue);

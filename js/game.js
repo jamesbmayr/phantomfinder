@@ -315,13 +315,16 @@
 									}
 							}
 
+						// svgPath
+							const svgPath = piece.team ? "M 47 40 C 43 38 40 35 40 30 C 40 24 44 20 50 20 C 56 20 60 24 60 30 C 60 35 57 38 53 40 C 53 41 53 41 53 42 C 56 42 57 42 60 42 C 64 42 72 50 75 53 C 78 56 73 61 70 58 C 67 55 62 50 60 50 C 60 55 60 83 60 86 C 60 88 58 90 56 90 C 54 90 52 88 52 86 C 52 83 52 73 52 70 C 51 70 49 70 48 70 C 48 73 48 83 48 86 C 48 88 46 90 44 90 C 42 90 40 88 40 86 C 40 83 40 55 40 50 C 38 50 33 55 30 58 C 27 61 22 56 25 53 C 28 50 36 42 40 42 C 43 42 44 42 47 42 C 47 41 47 41 47 40 Z" : "M 54 40 C 54 42 56 44 58 44 C 60 44 62 42 62 40 C 62 38 60 36 58 36 C 56 36 54 38 54 40 Z M 38 40 C 38 42 40 44 42 44 C 44 44 46 42 46 40 C 46 38 44 36 42 36 C 40 36 38 38 38 40 Z M 36 70 C 36 70 34 75 34 75 C 32 80 32 80 31 75 C 30 70 30 60 30 40 C 30 29 39 20 50 20 C 61 20 70 29 70 40 C 70 60 70 70 69 75 C 68 80 68 80 66 75 C 66 75 64 70 64 70 C 62 65 62 65 60 70 C 60 70 58 75 58 75 C 56 80 56 80 54 75 C 54 75 52 70 52 70 C 50 65 50 65 48 70 C 48 70 48 70 46 75 C 44 80 44 80 42 75 C 42 75 40 70 40 70 C 38 65 38 65 36 70 Z"
+
 						// otherwise
 							const pieceElement = document.createElement("button")
 								pieceElement.className = "board-pieces-piece"
 								pieceElement.setAttribute("x", piece.x)
 								pieceElement.setAttribute("y", piece.y)
 								pieceElement.setAttribute("team", piece.team)
-								pieceElement.innerHTML = `<svg viewBox="10 10 80 80"><path></path></svg>`
+								pieceElement.innerHTML = `<svg viewBox="10 10 80 80"><path d="${svgPath}"></path></svg>`
 								pieceElement.addEventListener(TRIGGERS.click, selectPiece)
 							pieceSquare.appendChild(pieceElement)
 					}
