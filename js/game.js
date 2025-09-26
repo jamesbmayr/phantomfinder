@@ -17,10 +17,12 @@
 			"players-resign": document.querySelector("#players-resign"),
 			"board-grid": document.querySelector("#board-grid"),
 			"board-pieces": document.querySelector("#board-pieces"),
+			"pregame": document.querySelector("#pregame"),
 			"postgame": document.querySelector("#postgame"),
 			"postgame-message": document.querySelector("#postgame-message"),
 			"postgame-rematch": document.querySelector("#postgame-rematch"),
-			"postgame-new": document.querySelector("#postgame-new")
+			"postgame-new": document.querySelector("#postgame-new"),
+			"back": document.querySelector("#back")
 		}
 
 	/* state */
@@ -203,6 +205,8 @@
 
 				// build board
 					if (!ELEMENTS["board-grid"].hasChildNodes()) {
+						ELEMENTS["back"].setAttribute("visibility", "false")
+						ELEMENTS["pregame"].setAttribute("visibility", "true")
 						displayBoard(STATE.game)
 					}
 
@@ -212,10 +216,23 @@
 				// display players
 					displayPlayers(STATE.game)
 
+				// start
+					if (STATE.game.timeStart) {
+						displayStart(STATE.game)
+					}
+
 				// end
 					if (STATE.game.timeEnd) {
 						displayEnd(STATE.game)
 					}
+			} catch (error) {console.log(error)}
+		}
+
+	/* displayStart */
+		function displayStart(game) {
+			try {
+				// hide pregame
+					ELEMENTS["pregame"].setAttribute("visibility", false)
 			} catch (error) {console.log(error)}
 		}
 

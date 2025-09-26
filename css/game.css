@@ -27,23 +27,37 @@
 	}
 
 	h1 {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
 		font-size: calc(2 * var(--font-size));
 		font-family: var(--font-0);
 		color: var(--medium-red);
-		margin: calc(var(--gap-size) * 8) 0 0 0;
+		margin: 0;
 		text-align: center;
 		user-select: none;
+		background: var(--dark-gray);
+		border-radius: var(--border-radius);
+		padding: calc(4 * var(--gap-size));
+		box-shadow: 0 0 var(--shadow-size) var(--medium-red);
+		width: calc(var(--font-size) * 10);
 	}
 
 		h1 span {
 			user-select: all;
 		}
 
+		h1:not([visibility="true"]) {
+			display: none;
+			pointer-events: none;
+		}
+
 	h2 {
 		font-size: calc(2 * var(--font-size));
 		font-family: var(--font-0);
 		color: var(--light-gray);
-		margin: calc(var(--gap-size) * 8) 0 calc(var(--gap-size) * 2) 0;
+		margin: calc(var(--gap-size) * 2) 0;
 		text-align: center;
 		user-select: none;
 		vertical-align: top;
@@ -178,7 +192,7 @@
 
 	/* resign */
 		#players-resign {
-			background: var(--medium-dark-gray);
+			background: transparent;
 			border-radius: var(--border-radius);
 			font-size: calc(2 * var(--font-size));
 			font-weight: bold;
@@ -197,13 +211,18 @@
 			outline: none;
 			text-transform: uppercase;
 			vertical-align: top;
-			margin-top: calc(10 * var(--gap-size));
+			margin-top: calc(2 * var(--gap-size));
 		}
 
-		#players-resign:not([visibility="true"]) {
-			display: none;
-			pointer-events: none;
-		}
+			#players-resign:hover, #players-resign:focus {
+				background: var(--medium-red);
+				color: var(--light-gray);
+			}
+
+			#players-resign:not([visibility="true"]) {
+				display: none;
+				pointer-events: none;
+			}
 		
 /*** board ***/
 	#board {
@@ -328,7 +347,8 @@
 		padding: calc(4 * var(--gap-size));
 		border-radius: var(--border-radius);
 		box-shadow: 0 0 var(--shadow-size) var(--medium-dark-gray);
-		width: 100%;
+		width: calc(100% - 4 * var(--gap-size));
+		box-sizing: border-box;
 		text-align: center;
 	}
 
@@ -362,33 +382,69 @@
 			outline: none;
 			text-transform: uppercase;
 			vertical-align: top;
+			display: block;
+			margin: auto auto;
 		}
 
 			#postgame-rematch {
-				border-radius: var(--border-radius) 0 0 var(--border-radius);
+				border-radius: var(--border-radius) var(--border-radius) 0 0;
 			}
 
 			#postgame-new {
-				border-radius: 0 var(--border-radius) var(--border-radius) 0;
+				border-radius: 0 0 var(--border-radius) var(--border-radius);
 			}
 
 			#postgame-rematch:focus, #postgame-rematch:hover, #postgame-new:focus, #postgame-new:hover {
 				background: var(--light-blue);	
 			}
 
+		#back {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			color: var(--medium-red);
+			text-decoration: none;
+			transition: var(--transition-time);
+			font-size: calc(var(--font-size) * 2);
+			font-family: var(--font-0);
+			height: calc(var(--font-size) * 2);
+			width: auto;
+			vertical-align: top;
+			outline: none;
+			cursor: pointer;
+		}
+
+			#back:hover, #back:focus {
+				color: var(--light-blue);
+			}
+
+			#back:not([visibility="true"]) {
+				display: none;
+				pointer-events: none;
+			}
+
+			#back svg {
+				color: inherit;
+				vertical-align: top;
+			}
+
+			#back span {
+				vertical-align: top;
+			}
+
 /*** toast ***/
 	#toast {
 		position: fixed;
-		top: calc(2 * var(--gap-size));
-		left: 50%;
-		transform: translateX(-50%);
+		bottom: 0;
+		left: 0;
 		padding: calc(var(--gap-size) + var(--border-size));
-		border-radius: var(--border-radius);
+		border-radius: 0;
 		font-family: var(--font-1);
 		font-size: calc(var(--font-size) * 2);
 		font-weight: bold;
 		line-height: var(--line-height);
-		width: calc(100% - 4 * var(--gap-size));
+		width: 100%;
 		min-height: calc(var(--font-size) + 2 * var(--gap-size) + 2 * var(--border-size));
 		height: auto;
 		box-sizing: border-box;
@@ -401,7 +457,6 @@
 		transition: var(--transition-time);
 		opacity: 1;
 		text-align: center;
-		pointer-events: none;
 	}
 
 		#toast[success="true"] {
@@ -416,6 +471,7 @@
 
 		#toast:not([visibility="true"]) {
 			opacity: 0;
+			pointer-events: none;
 		}
 
 /*** mobile ***/

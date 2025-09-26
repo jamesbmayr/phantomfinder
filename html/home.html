@@ -45,36 +45,35 @@
 			<div id="about-inner">
 				<div id="about-overview">
 					<h2>About</h2>
-					<p>PhantomFinder is an asymmetrical board game for two players: ghost and ghost hunters.</p>
+					<p>PhantomFinder is an asymmetrical board game for two players: <span>ghost</span> and <span>hunters</span>.</p>
 				</div>
-				<div id="about-setup">
-					<h2>Setup</h2>
+				<div id="about-board">
+					<h2>Board</h2>
 					<ul>
-						<li>Create a game by selecting a side: ghost or ghost hunters.</li>
-						<li>Join a game with a game ID.</li>
-						<li>Every game is played on a grid (<script node>getAsset("constants").boardSize</script node>x<script node>getAsset("constants").boardSize</script node>) with <script node>getAsset("constants").obstacleCount</script node> random obstacles.</li>
+						<li>The board is a grid of <b><script node>getAsset("constants").boardSize</script node>x<script node>getAsset("constants").boardSize</script node></b> squares.</li>
+						<li>There are <b><script node>getAsset("constants").obstacleCount</script node></b> random obstacles, which <span>hunters</span> cannot see or move through.
 					</ul>
 				</div>
 				<div id="about-gameplay">
 					<h2>Ghost</h2>
 					<ul>
-						<li>The ghost moves like a Chess Knight: 2 spaces vertically or horizontally, then 1 space perpendicular.</li>
-						<li>The ghost can always see the hunters.</li>
-						<li>If the ghost moves where a hunter is, the hunter is captured, and the ghost moves again.</li>
+						<li>The <span>ghost</span> moves like a <b>Chess Knight</b>: 2 spaces vertically or horizontally, then 1 space perpendicular.</li>
+						<li>The <span>ghost</span> can always see the <span>hunters</span>.</li>
+						<li>If the <span>ghost</span> moves where a <span>hunter</span> is, the <span>hunter</span> is captured, and the <span>ghost</span> moves again.</li>
 					</ul>
 					<h2>Hunters</h2>
 					<ul>
-						<li>The hunters move like Chess Queens: any number of spaces vertically, horizontally, or diagonally.</li>
-						<li>If a hunter has a direct line-of-sight to the ghost, the ghost will be revealed.</li>
-						<li>The hunters player can move an existing hunter, or add a new one at the edge of the board.</li>
-						<li>There can be up to <script node>getAsset("constants").simultaneousHunters</script node> hunters at once.</li>
+						<li>The <span>hunters</span> move like <b>Chess Queens</b>: any number of spaces vertically, horizontally, or diagonally.</li>
+						<li>If a <span>hunter</span> has a direct line-of-sight to the <span>ghost</span>, the <span>ghost</span> will be revealed.</li>
+						<li>This player can move an existing <span>hunter</span>, or add a new one at the edge of the board.</li>
+						<li>There can be up to <b><script node>getAsset("constants").simultaneousHunters</script node></b> <span>hunters</span> at once.</li>
 					</ul>
 				</div>
 				<div id="about-endgame">
 					<h2>Endgame</h2>
 					<ul>
-						<li>If <script node>getAsset("constants").hunterDeathGoal</script node> hunters are captured, the ghost wins.</li>
-						<li>If the ghost is captured, the hunters win.</li>
+						<li>If <b><script node>getAsset("constants").hunterDeathGoal</script node></b> <span>hunters</span> are captured, the <span>ghost</span> wins.</li>
+						<li>If the <span>ghost</span> is captured, the <span>hunters</span> win.</li>
 					</ul>
 				</div>
 			</div>
