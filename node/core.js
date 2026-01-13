@@ -391,7 +391,7 @@
 								boardSize: 8, // squares
 								obstacleCount: 5, // squares
 								simultaneousHunters: 4, // pieces
-								hunterDeathGoal: 4, // pieces
+								hunterDeathGoal: 3, // pieces
 							}
 						break
 
